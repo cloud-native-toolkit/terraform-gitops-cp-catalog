@@ -53,7 +53,7 @@ resource null_resource setup_gitops {
 
     environment = {
       SECRET_DIR      = module.seal_secrets.dest_dir
-      GIT_CREDENTIALS = yamlencode(nonsensitive(var.git_credentials))
+      GIT_CREDENTIALS = yamlencode(var.git_credentials)
       GITOPS_CONFIG   = yamlencode(var.gitops_config)
     }
   }
