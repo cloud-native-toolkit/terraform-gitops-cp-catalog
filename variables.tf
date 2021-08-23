@@ -65,24 +65,7 @@ variable "git_credentials" {
 variable "namespace" {
   type        = string
   description = "The namespace where the application should be deployed"
-}
-
-variable "cluster_ingress_hostname" {
-  type        = string
-  description = "Ingress hostname of the IKS cluster."
-  default     = ""
-}
-
-variable "cluster_type" {
-  type        = string
-  description = "The cluster type (openshift or ocp3 or ocp4 or kubernetes)"
-  default     = "ocp4"
-}
-
-variable "tls_secret_name" {
-  type        = string
-  description = "The name of the secret containing the tls certificate values"
-  default     = ""
+  default     = "openshift-marketplace"
 }
 
 variable "kubeseal_cert" {
@@ -95,4 +78,9 @@ variable "server_name" {
   type        = string
   description = "The name of the server"
   default     = "default"
+}
+
+variable "entitlement_key" {
+  type        = string
+  description = "The entitlement key used to access the CP4I images in the container registry. Visit https://myibm.ibm.com/products-services/containerlibrary to get the key"
 }
