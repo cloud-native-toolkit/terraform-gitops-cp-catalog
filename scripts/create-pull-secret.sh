@@ -14,7 +14,7 @@ fi
 mkdir -p "${OUTPUT_DIR}"
 
 echo "Creating pull secret with entitlement key: ${NAMESPACE}/${NAME}"
-oc create secret docker-registry "${NAME}" \
+kubectl create secret docker-registry "${NAME}" \
   --docker-username="${USERNAME}" \
   --docker-password="${ENTITLEMENT_KEY}" \
   --docker-server="${SERVER}" \
