@@ -21,3 +21,9 @@ output "catalog_processmining" {
   value       = "ibm-automation-processminings"
   depends_on = [null_resource.setup_gitops]
 }
+
+output "entitlement_key" {
+  description = "Entitlement key"
+  value       = var.entitlement_key
+  depends_on  = [null_resource.setup_gitops]
+}
