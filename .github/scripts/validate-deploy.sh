@@ -8,6 +8,7 @@ LAYER="1-infrastructure"
 NAMESPACE="openshift-marketplace"
 BRANCH="main"
 SERVER_NAME="default"
+TYPE="base"
 
 COMPONENT_NAME="ibm-catalogs"
 
@@ -19,13 +20,13 @@ cd .testrepo || exit 1
 
 find . -name "*"
 
-if [[ ! -f "argocd/${LAYER}/cluster/${SERVER_NAME}/${NAMESPACE}-${COMPONENT_NAME}.yaml" ]]; then
-  echo "ArgoCD config missing - argocd/${LAYER}/cluster/${SERVER_NAME}/${NAMESPACE}-${COMPONENT_NAME}.yaml"
+if [[ ! -f "argocd/${LAYER}/cluster/${SERVER_NAME}/${TYPE}/${NAMESPACE}-${COMPONENT_NAME}.yaml" ]]; then
+  echo "ArgoCD config missing - argocd/${LAYER}/cluster/${SERVER_NAME}/${TYPE}/${NAMESPACE}-${COMPONENT_NAME}.yaml"
   exit 1
 fi
 
-echo "Printing argocd/${LAYER}/cluster/${SERVER_NAME}/${NAMESPACE}-${COMPONENT_NAME}.yaml"
-cat "argocd/${LAYER}/cluster/${SERVER_NAME}/${NAMESPACE}-${COMPONENT_NAME}.yaml"
+echo "Printing argocd/${LAYER}/cluster/${SERVER_NAME}/${TYPE}/${NAMESPACE}-${COMPONENT_NAME}.yaml"
+cat "argocd/${LAYER}/cluster/${SERVER_NAME}/${TYPE}/${NAMESPACE}-${COMPONENT_NAME}.yaml"
 
 if [[ ! -f "payload/${LAYER}/namespace/${NAMESPACE}/${COMPONENT_NAME}/values.yaml" ]]; then
   echo "Application values not found - payload/${LAYER}/namespace/${NAMESPACE}/${COMPONENT_NAME}/values.yaml"
