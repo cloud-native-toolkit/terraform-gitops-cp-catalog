@@ -4,8 +4,7 @@ locals {
   tmp_dir       = "${path.cwd}/.tmp/${local.name}"
   secret_dir    = "${local.tmp_dir}/secrets"
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
-  layer = "services"
-  type  = "operators"
+  layer = "infrastructure"
   secret_name  = "ibm-entitlement-key"
   catalog_name = "ibm-operator-catalog"
   application_branch = "main"
@@ -51,7 +50,7 @@ resource null_resource setup_gitops {
   depends_on = [null_resource.create_yaml]
 
   provisioner "local-exec" {
-    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --type ${local.type}"
+    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}'"
 
     environment = {
       SECRET_DIR      = module.seal_secrets.dest_dir
