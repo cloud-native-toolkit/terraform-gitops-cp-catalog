@@ -16,16 +16,18 @@ module setup_clis {
   source = "github.com/cloud-native-toolkit/terraform-util-clis.git"
 }
 
-resource "null_resource" "create_secrets" {
-  count = var.entitlement_key != "" ? 1 : 0
+module pull_secret {
+  source = "github.com/cloud-native-toolkit/terraform-gitops-pull-secret"
 
-  provisioner "local-exec" {
-    command = "${path.module}/scripts/create-pull-secret.sh ${var.namespace} ${local.secret_name} ${local.secret_dir}"
-
-    environment = {
-      ENTITLEMENT_KEY = var.entitlement_key
-    }
-  }
+  gitops_config = var.gitops_config
+  git_credentials = var.git_credentials
+  server_name = var.server_name
+  kubeseal_cert = var.kubeseal_cert
+  namespace = var.namespace
+  docker_username = "cp"
+  docker_password = var.entitlement_key
+  docker_server   = "cp.icr.io"
+  secret_name     = "ibm-entitlement-key"
 }
 
 resource null_resource create_yaml {
