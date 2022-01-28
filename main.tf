@@ -37,7 +37,7 @@ resource null_resource create_yaml {
 }
 
 module seal_secrets {
-  depends_on = [null_resource.create_secrets, null_resource.create_yaml]
+  depends_on = [null_resource.create_yaml]
 
   source = "github.com/cloud-native-toolkit/terraform-util-seal-secrets.git?ref=v1.0.0"
 
@@ -48,7 +48,7 @@ module seal_secrets {
 }
 
 resource null_resource setup_gitops {
-  depends_on = [null_resource.create_yaml, null_resource.create_secrets]
+  depends_on = [null_resource.create_yaml]
 
   provisioner "local-exec" {
     command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --type ${local.type}"
