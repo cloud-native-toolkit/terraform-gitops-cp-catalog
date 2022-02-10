@@ -80,3 +80,16 @@ variable "git_username" {
 
 variable "cp_entitlement_key" {
 }
+
+variable "kubeseal_namespace" {
+  default = "sealed-secrets"
+}
+
+variable "ingress_subdomain" {
+  default = ""
+}
+
+variable "bootstrap_prefix" {
+  type = string
+  default = ""
+}
