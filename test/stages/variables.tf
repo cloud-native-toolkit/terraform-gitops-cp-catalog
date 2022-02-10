@@ -93,3 +93,7 @@ variable "bootstrap_prefix" {
   type = string
   default = ""
 }
+
+variable "server_url" {
+  type        = string
+}
