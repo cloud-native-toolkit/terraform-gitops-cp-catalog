@@ -5,6 +5,7 @@ locals {
   secret_dir    = "${local.tmp_dir}/secrets"
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   layer = "infrastructure"
+  type = "base"
   secret_name  = "ibm-entitlement-key"
   catalog_name = "ibm-operator-catalog"
   application_branch = "main"
@@ -16,7 +17,7 @@ module setup_clis {
 }
 
 module pull_secret {
-  source = "github.com/cloud-native-toolkit/terraform-gitops-pull-secret"
+  source = "github.com/cloud-native-toolkit/terraform-gitops-pull-secret?ref=provider"
 
   gitops_config = var.gitops_config
   git_credentials = var.git_credentials
@@ -46,16 +47,16 @@ module seal_secrets {
   label         = local.name
 }
 
-resource null_resource setup_gitops {
+resource gitops_module module {
   depends_on = [null_resource.create_yaml]
 
-  provisioner "local-exec" {
-    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}'"
-
-    environment = {
-      SECRET_DIR      = module.seal_secrets.dest_dir
-      GIT_CREDENTIALS = nonsensitive(yamlencode(var.git_credentials))
-      GITOPS_CONFIG   = yamlencode(var.gitops_config)
-    }
-  }
+  name = local.name
+  namespace = var.namespace
+  content_dir = local.yaml_dir
+  server_name = var.server_name
+  layer = local.layer
+  type = local.type
+  branch = local.application_branch
+  config = yamlencode(var.gitops_config)
+  credentials = yamlencode(var.git_credentials)
 }
