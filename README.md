@@ -6,6 +6,9 @@ Module to populate a gitops repository with the resources needed to install the 
 - IBM Operator Catalog - `ibm-operator-catalog`
 - IBM Automation Foundation Catalog - `iaf-core-operators`
 - IBM Process Mining Catalog - `ibm-automation-processminings`
+- IBM DB2U Catalog - `ibm-db2uoperator-catalog`
+
+**Note:** One of the required variable for this module is an IBM Entitlement Key which provides access to the container registry. This value can be retrieved from - https://myibm.ibm.com/products-services/containerlibrary
 
 ## Software dependencies
 
