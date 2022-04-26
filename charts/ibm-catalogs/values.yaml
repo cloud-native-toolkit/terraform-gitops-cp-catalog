@@ -46,7 +46,7 @@ ibm-catalogs:
           registryPoll:
             interval: 45m
 
-    ibmoperators:
+    db2u:
       name: ibm-db2uoperator-catalog
       catalog:
         sourceType: grpc
