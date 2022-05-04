@@ -1,60 +1,62 @@
+# Default values for ibm-catalogs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 global: {}
+syncWave: "-10"
 
-ibm-catalogs:
-  catalogs:
-    commonservices:
-      name: opencloud-operators
-      catalog:
-        displayName: IBMCS Operators
-        publisher: IBM
-        sourceType: grpc
-        image: docker.io/ibmcom/ibm-common-service-catalog:latest
-        updateStrategy:
-          registryPoll:
-            interval: 45m
+catalogs:
+  commonservices:
+    name: opencloud-operators
+    catalog:
+      displayName: IBMCS Operators
+      publisher: IBM
+      sourceType: grpc
+      image: docker.io/ibmcom/ibm-common-service-catalog:latest
+      updateStrategy:
+        registryPoll:
+          interval: 45m
 
-    ibmoperators:
-      name: ibm-operator-catalog
-      catalog:
-        displayName: "IBM Operator Catalog"
-        publisher: IBM
-        sourceType: grpc
-        image: icr.io/cpopen/ibm-operator-catalog:latest
-        updateStrategy:
-          registryPoll:
-            interval: 45m
+  ibmoperators:
+    name: ibm-operator-catalog
+    catalog:
+      displayName: "IBM Operator Catalog"
+      publisher: IBM
+      sourceType: grpc
+      image: icr.io/cpopen/ibm-operator-catalog:latest
+      updateStrategy:
+        registryPoll:
+          interval: 45m
 
-    automationfoundation:
-      name: iaf-core-operators
-      catalog:
-        displayName: IAF Core Operators
-        publisher: IBM
-        sourceType: grpc
-        image: icr.io/cpopen/ibm-automation-foundation-core-catalog
-        updateStrategy:
-          registryPoll:
-            interval: 45m
-    
-    processmining:
-      name: ibm-automation-processminings
-      catalog:
-        displayName: IBM ProcessMining Operators
-        publisher: IBM
-        sourceType: grpc
-        image: icr.io/cpopen/processmining-operator-catalog
-        updateStrategy:
-          registryPoll:
-            interval: 45m
+  automationfoundation:
+    name: iaf-core-operators
+    catalog:
+      displayName: IAF Core Operators
+      publisher: IBM
+      sourceType: grpc
+      image: icr.io/cpopen/ibm-automation-foundation-core-catalog
+      updateStrategy:
+        registryPoll:
+          interval: 45m
 
-    db2u:
-      name: ibm-db2uoperator-catalog
-      catalog:
-        sourceType: grpc
-        image: docker.io/ibmcom/ibm-db2uoperator-catalog:latest
-        imagePullPolicy: Always
-        displayName: IBM Db2U Catalog
-        publisher: IBM
-        updateStrategy:
-          registryPoll:
-            interval: 45m         
-              
+  processmining:
+    name: ibm-automation-processminings
+    catalog:
+      displayName: IBM ProcessMining Operators
+      publisher: IBM
+      sourceType: grpc
+      image: icr.io/cpopen/processmining-operator-catalog
+      updateStrategy:
+        registryPoll:
+          interval: 45m
+
+  db2u:
+    name: ibm-db2uoperator-catalog
+    catalog:
+      displayName: IBM Db2U Catalog
+      publisher: IBM
+      sourceType: grpc
+      image: icr.io/cpopen/ibm-db2uoperator-catalog:latest
+      imagePullPolicy: Always
+      updateStrategy:
+        registryPoll:
+          interval: 45m
