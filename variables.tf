@@ -62,12 +62,6 @@ variable "git_credentials" {
   description = "The credentials for the gitops repo(s)"
 }
 
-variable "namespace" {
-  type        = string
-  description = "The namespace where the application should be deployed"
-  default     = "openshift-marketplace"
-}
-
 variable "kubeseal_cert" {
   type        = string
   description = "The certificate/public key used to encrypt the sealed secrets"
