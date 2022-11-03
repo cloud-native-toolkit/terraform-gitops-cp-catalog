@@ -62,4 +62,5 @@ output "entitlement_key" {
   description = "Entitlement key"
   value       = var.entitlement_key
   depends_on  = [gitops_module.module]
+  sensitive   = true
 }
